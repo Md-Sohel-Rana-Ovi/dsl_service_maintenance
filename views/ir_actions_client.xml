@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_service_dashboard" model="ir.actions.client">
+            <field name="name">Dashboard</field>
+            <field name="tag">dsl_service_maintenance.service_maintenance</field>
+            <field name="target">main</field>
+        </record>
+    </data>
+</odoo>

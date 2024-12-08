@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- menu -->
+<odoo><!-- Root Menu -->
+    <menuitem id="menu_dsl_management_root" name="Service Maintenence" web_icon="dsl_service_maintenance,static/description/icon.png" sequence="10"/>
+    
+    <menuitem id="menu_dsl_dashboard" name="Dashboard" parent="menu_dsl_management_root" action="action_service_dashboard" sequence="10"/>
+
+    <menuitem id="menu_dsl_requisition" name="Requisitions" parent="menu_dsl_management_root" sequence="20"/>
+    <menuitem id="menu_dsl_fuel_requisition" name="Fuel Requisitions" parent="menu_dsl_requisition" action="action_fuel_requisition" sequence="30"/>
+    <menuitem id="menu_dsl_service_log" name="Services" parent="menu_dsl_requisition" action="action_service_log" sequence="40"/>
+    <menuitem id="menu_dsl_procurement" name="Procurement" parent="menu_dsl_management_root" sequence="30"/>
+    <menuitem id="menu_purchase_request_order" name="Purchase Requests" parent="menu_dsl_procurement" sequence="10"/>
+    <menuitem id="menu_purchase_request_order_act" sequence="10" parent="menu_purchase_request_order" action="purchase_request_order_form_action"/>
+    <menuitem id="menu_purchase_request_order_pro_mgt" parent="purchase.menu_procurement_management" action="purchase_request_order_form_action"/>
+    <menuitem id="menu_payment_section" name="Payments" parent="menu_dsl_procurement" sequence="10"/>
+    <menuitem id="menu_create_payment_wizard" name="Advanced Payment" parent="menu_payment_section" action="action_payment_wizard" sequence="40"/>
+    <menuitem id="menu_dsl_fuel_procurement" name="Bill History" parent="menu_payment_section" action="dsl_service_maintenance.action_account_payment_golf" sequence="50"/>
+    <menuitem id="menu_dsl_inventory" name="Inventory" parent="menu_dsl_management_root" sequence="30"/>
+    <menuitem id="menu_dsl_inventory_product" name="Products" parent="menu_dsl_inventory" action="product.product_template_action" sequence="20"/>
+
+    <!-- report -->
+    <menuitem id="menu_dsl_report" name="Reports" parent="menu_dsl_management_root" action="action_dsl_service_report" sequence="20"/>
+
+    <menuitem id="root_menu_configuration" name="Configuration" parent="menu_dsl_management_root" sequence="30"/>
+    <menuitem id="fuel_configuration" name="Fuel Configuration" parent="root_menu_configuration" action="action_fuel_config" sequence="30"/>
+    <menuitem id="menu_dsl_vehicle" name="Vehicle" parent="root_menu_configuration" sequence="40"/>
+    <menuitem id="menu_dsl_vehicle_type" name="Vehicle Type" parent="menu_dsl_vehicle" action="vehicle_type_action" sequence="10"/>
+    <menuitem id="menu_dsl_golf_driver" name="Driver" parent="menu_dsl_vehicle" action="vehicle_driver_action" sequence="20"/>
+    <menuitem id="menu_product_type_root" name="Products" parent="root_menu_configuration" sequence="50"/>
+    <menuitem id="menu_dsl_product_service_type" name="Product Service Type" parent="menu_product_type_root" action="product_service_type_action" sequence="10"/>
+    <menuitem id="menu_dsl_service_type" name="Service Type" parent="menu_product_type_root" action="service_type_action_view" sequence="15"/>
+    
+</odoo>

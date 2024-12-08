@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_service_log_tree" model="ir.ui.view">
+        <field name="name">dsl.service.log.tree</field>
+        <field name="model">dsl.service.log</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="employee_id"/>
+                <field name="date"/>
+                <field name="product_service_type_id"/>
+                <field name="cost"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_service_log_form" model="ir.ui.view">
+        <field name="name">dsl.service.log.form</field>
+        <field name="model">dsl.service.log</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_approve" type="object" string="Approve" class="btn-primary" attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_cancel" type="object" string="Cancel" class="bg-danger text-white" attrs="{'invisible': [('state', 'not in', ['draft'])]}"/>                
+                    <button name="action_reset_draft" type="object" string="Reset to Draft" class="btn-secondary" attrs="{'invisible': [('state', '!=', 'cancel')]}"/>                  
+                    <field name="state" widget="statusbar" statusbar_visible="draft,approved"/>
+                </header>
+
+                <sheet>
+                    <h1 class="oe_title">
+                        <field name="code" nolabel="1"></field>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="description"/>
+                            <field name="vendor_id"/>
+                            <field name="employee_id"/>
+                            <field name="cost"/>
+                        </group>
+                        <group> 
+                            <field name="product_service_type_id"/>
+                            <field name="driver_id"/>
+                            <field name="date"/>
+                         </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_service_log" model="ir.actions.act_window">
+        <field name="name">Services</field>
+        <field name="res_model">dsl.service.log</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

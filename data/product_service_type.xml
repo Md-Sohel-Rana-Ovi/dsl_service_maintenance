@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="product_service_type_vehicle" model="dsl.product.service.type">
+            <field name="name">Vehicle</field>
+        </record>
+
+        <record id="product_service_type_cart" model="dsl.product.service.type">
+            <field name="name">Cart</field>
+        </record>
+
+        <record id="product_service_type_machine" model="dsl.product.service.type">
+            <field name="name">Machine</field>
+        </record>
+
+        <record id="product_service_type_fertilizer" model="dsl.product.service.type">
+            <field name="name">Fertilizer</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data><!-- Paper Format -->
+        <record id="custom_paper_format_purchase_request" model="report.paperformat">
+            <field name="name">Custom Report A4 Purchase Request</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">25</field>
+            <field name="margin_bottom">12</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">22</field>
+            <field name="dpi">90</field>
+        </record><!-- Report definition -->
+        <record id="purchase_request_report" model="ir.actions.report">
+            <field name="name">Purchase Request Report</field>
+            <field name="model">purchase.request.order</field>
+            <field name="report_type">qweb-html</field>
+            <field name="report_name">dsl_service_maintenance.report_purchase_request</field>
+            <field name="report_file">dsl_service_maintenance.report_purchase_request</field>
+            <field name="print_report_name">&apos;Purchase Request - &apos; + object.name</field>
+            <field name="binding_model_id" ref="model_purchase_request_order"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="custom_paper_format_purchase_request"/>
+        </record><!-- Purchase Request Report Template -->
+        <template id="report_purchase_request">
+            <t t-call="web.basic_layout">
+                <div class="page" style="font-family: Arial, sans-serif; color: #333;">
+                    <div class="header">
+                        <div class="row" style="border-bottom: 2px solid #4CAF50; padding-bottom: 10px; margin-bottom: 20px;"><!-- Left section for company logo -->
+                            <div class="col-3" style="text-align: left;"><!-- Display company logo if available -->
+                                <img t-if="company_logo" t-att-src="&apos;data:image/png;charset=utf-8;base64,&apos; + company_logo" class="img-fluid" style="max-width: 80px; height: auto; border: 2px solid #ddd; padding: 5px;"/>
+                            </div><!-- Center section for company name -->
+                            <div class="col-6 text-center">
+                                <h4 class="fs-1 m-0" style="font-weight: bold; color: #4CAF50; font-size: 20px;">
+                                    <t t-esc="company_name"/>
+                                </h4>
+                            </div><!-- Right section for print date -->
+                            <div class="col-3 text-end">
+                                <span style="font-size: 14px; color: #555;">
+                                    <strong>Printed On:</strong>
+                                    <t t-esc="datetime.datetime.now().strftime(&apos;%d %B, %Y&apos;)"/>
+                                </span>
+                            </div>
+                        </div>
+                    </div><!-- Report Title and Date Range -->
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div class="col-6 text-start">
+                            <h3 style="font-size: 20px; font-weight: bold; color: #4CAF50; margin-bottom: 5px;">
+                        Purchase Request Report
+                    </h3>
+                        </div>
+                        <div class="col-6 text-end">
+                            <h6 class="text-end" style="font-size: 14px; color: #777;">
+                                <span>
+                            From Date: <t t-esc="from_date"/>    
+                            To Date: <t t-esc="to_date"/>
+                                </span>
+                            </h6>
+                        </div>
+                    </div><!-- Data Table -->
+                    <t t-if="data_list">
+                        <table class="table table-bordered" style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                            <thead>
+                                <tr style="background-color: #4CAF50; color: white;">
+                                    <th>SL</th>
+                                    <th>Request Code</th>
+                                    <th>Requested By</th>
+                                    <th>Assigned To</th>
+                                    <th>State</th>
+                                    <th>Description</th>
+                                    <th>Start Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="serial_no" t-value="1"/>
+                                <t t-foreach="data_list" t-as="record">
+                                    <tr>
+                                        <td>
+                                            <t t-esc="serial_no"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="record[&apos;name&apos;]"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="record[&apos;requested_by&apos;]"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="record[&apos;assigned_to&apos;]"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="record[&apos;state&apos;]"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="record[&apos;description&apos;]"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="record[&apos;date_start&apos;]"/>
+                                        </td>
+                                    </tr>
+                                    <t t-set="serial_no" t-value="serial_no + 1"/>
+                                </t>
+                            </tbody>
+                        </table>
+                    </t>
+                    <t t-else="">
+                        <p style="text-align: center; color: #999;">No data found</p>
+                    </t>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

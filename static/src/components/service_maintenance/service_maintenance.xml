@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+    <t t-name="dsl_service_maintenance.service_maintenance" owl="1">
+        <div class="container my-5 vh-100 overflow-auto">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-md-9">
+                            <h1 class="text-primary">Service Maintenance</h1>
+                        </div>
+                        <div class="col-md-3">
+                            <!-- Date Range Filters -->
+                            <div class="d-flex mb-3">
+                                <div class="w-50 me-2">
+                                    <label for="fromDate" class="form-label">From Date</label>
+                                    <input 
+                                    id="fromDate" 
+                                    type="date" 
+                                    class="form-control" 
+                                    t-model="state.from_date" 
+                                    t-on-change="onFromDateChange"/>
+                                </div>
+                                <div class="w-50">
+                                    <label for="toDate" class="form-label">To Date</label>
+                                    <input 
+                                    id="toDate" 
+                                    type="date" 
+                                    class="form-control" 
+                                    t-model="state.to_date" 
+                                    t-on-change="onToDateChange"/>
+                                </div>
+                            </div>
+                            <!-- New Buttons for Date Filters -->
+                            <div class="d-flex">
+                                <button type="button" class="btn btn-primary me-2" t-on-click="onLast7DaysClick">Last 7 Days</button>
+                                <button type="button" class="btn btn-info me-2" t-on-click="onMonthlyClick">This Month</button>
+                                <button type="button" class="btn btn-warning" t-on-click="onYearlyClick">This Year</button>
+                            </div>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="row g-2 g-lg-3">
+                        <Card title="'Total Vehicle'" value="state.service_type_counts.vehicle" color="'#22a6b3'" t-on-click="showVehicleRecords"/>
+                        <Card title="'Total Cart'" value="state.service_type_counts.cart" color="'#badc58'" t-on-click="showCartRecords"/>
+                        <Card title="'Total Machine'" value="state.service_type_counts.machine" color="'#ff7979'" t-on-click="showMachineRecords"/>
+                        <Card title="'Total Fertilizer'" value="state.service_type_counts.fertilizer" color="'#535c68'" t-on-click="showFertilizerRecords"/>
+                        <Card title="'Draft Payments'" value="state.payment_counts.draft" color="'#f39c12'" t-on-click="showDraftPayments"/>
+                        <Card title="'Posted Payments'" value="state.payment_counts.posted" color="'#2ecc71'" t-on-click="showPostedPayments"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

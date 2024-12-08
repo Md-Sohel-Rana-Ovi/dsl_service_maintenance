@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="dsl_service_maintenance.Card" owl="1">
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card cursor-pointer shadow-sm rounded" t-att-style="&apos;background-color: &apos; + props.color">
+                <div class="p-2 text-white">
+                    <h1 class="display-5">
+                        <span t-esc="props.value"/>
+                        <span t-esc="props.icon"/>
+                    </h1>
+                    <p>
+                        <span t-esc="props.title"/>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>
+

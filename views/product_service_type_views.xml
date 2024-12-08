@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <record id="product_service_type_tree" model="ir.ui.view">
+        <field name="name">dsl.product.service.type.tree</field>
+        <field name="model">dsl.product.service.type</field>
+        <field name="arch" type="xml">
+            <tree string="" editable="bottom">
+                <field name="name"></field>
+                <field name="note"></field>
+            </tree>
+        </field>
+    </record>
+
+    <record id="product_service_type_action" model="ir.actions.act_window">
+        <field name="name">Product Service Type</field>
+        <field name="res_model">dsl.product.service.type</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+</odoo>

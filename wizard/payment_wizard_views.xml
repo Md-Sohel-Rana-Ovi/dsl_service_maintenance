@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_payment_wizard_form" model="ir.ui.view">
+            <field name="name">payment.wizard.form</field>
+            <field name="model">payment.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Create Payment">
+                    <group>
+                        <group>
+                            <group>
+                                <field name="partner_id"/>
+                                <field name="amount"/>
+                                <field name="payment_type"/>                       
+                            </group>
+                        </group>
+                        <group>
+                            <field name="journal_id" domain="[('type', 'in', ['bank', 'cash'])]" options="{'no_quick_create':True, 'no_create_edit':True, 'no_create':True, 'no_open':True}"/>
+                            <field name="payment_date"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button string="Create Payment" type="object" name="create_payment" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_payment_wizard" model="ir.actions.act_window">
+            <field name="name">Create Payment</field>
+            <field name="res_model">payment.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>
